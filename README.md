@@ -15,6 +15,24 @@ haoone-cli 命令行工具介绍：[https://guide.haoai.pro/guide/haoone/%E4%BD%
 npx skills add minghe36/haoone-skill
 ```
 
+## 使用 skill 的前置条件
+
+1 安装了 [haoone](https://www.haoai.pro/haoone/download) 软件，并完成登录
+2 在软件中下载本地模型
+3 点击软件的设置按钮，启动命令行工具
+
+先确认命令可用：
+
+```bash
+haoone-cli --help
+```
+
+如果失败，再检查：
+
+```bash
+which haoone-cli
+```
+
 ## 功能范围
 
 当前支持以下 `haoone-cli` 子命令：
@@ -32,160 +50,55 @@ npx skills add minghe36/haoone-skill
 - `create-project`：创建项目并切换为当前项目
 - `delete-project`：删除项目
 
-额外支持一个自定义工作流：
+## 提示词举例
 
-- 读取 `.srt` 文件内容
-- 清理序号、时间轴等控制信息
-- 合并连续字幕
-- 生成中文结构化文稿
+下面这些提示词可以直接作为你在 Codex / ChatGPT / 其他支持 skill 的智能体中的输入参考。
 
-## 目录结构
+### 转录单个文件
 
-```text
-haoone-skill/
-├── SKILL.md
-├── README.md
-├── agents/
-│   └── openai.yaml
-└── references/
-    └── haoone-cli.md
-```
+- 帮我用将这个视频转录出字幕：`/path/to/demo.mp4`
+- 用 `haoone` 把 `/path/to/interview.wav` 转成字幕
+- 转录 `/path/to/lesson.mov`，输出 `srt`
 
-## 使用方式
+### 批量转录
 
-### 1. 直接调用 haoone-cli
+- 批量转录这个目录下的所有音视频文件：`/path/to/media/`
+- 帮我扫描 `/path/to/videos/`，把里面的文件全部转成字幕
 
-示例，转录单个文件：
+### 查看环境和模型
 
-```bash
-haoone-cli transcribe --audio-file-path /path/to/media.mp4
-```
+- 帮我检查 `haoone-cli` 是否可用
+- 列出当前已安装的模型
+- 读取 haoone 的配置给我看看
 
-示例，批量转录：
+### 热词管理
 
-```bash
-haoone-cli batch-transcribe -f /path/to/a.mp3,/path/to/b.mp4 -l zh
-```
+- 读取当前haoone的热词配置
+- 把这些热词批量加入haoone的热词配置：`cursor=科舍, claude=克劳德`
+- 帮我添加2个常用大模型热词，格式：热词=最有可能错误的3个同音词
 
-示例，查看已安装模型：
+### 文稿整理
 
-```bash
-haoone-cli installed-models
-```
+- 把这份转录文稿做格式化整理
+- 用 `format-draft` 处理这段文稿，让标点和分段更自然
+- 对这个字幕草稿做文稿匹配
+- 用已有文稿和字幕做 `manuscript-matching`
 
-### 2. 读取 SRT 并生成结构化文稿
+### 项目管理
 
-这个工作流不是 `haoone-cli` 原生命令，而是 skill 的扩展约定。
+- 列出当前所有 haoone 项目
+- 创建一个项目，名字叫 `播客第12期`
+- 删除项目 `测试项目`
+- 读取项目 `播客第12期` 下的 `srt` 文件列表
 
-适用场景：
+### 组合型提示词
 
-- 用户直接提供 `.srt` 文件路径
-- 用户只提供字幕文件名
-- 用户要求“把字幕整理成文稿”
-- 用户要求“把 srt 转成结构化笔记”
+- 先检查 `haoone-cli` 是否可用，再列出已安装模型
+- 帮我创建项目 `2026-05-采访稿`，然后批量转录 `/path/to/interview-files/`
+- 转录 `/path/to/talk.mp4`，然后把结果做格式化整理
 
-处理规则：
+### 使用建议
 
-1. 如果用户提供 `.srt` 完整路径，直接读取文件内容
-2. 如果用户只提供文件名，先调用 `haoone-cli get-project-srt-list`
-3. 如果用户同时提供项目名，优先调用 `haoone-cli get-project-srt-list -p 项目名`
-4. 匹配出对应的 `.srt` 路径后，读取文件内容
-5. 删除字幕编号和时间轴
-6. 合并连续字幕并恢复自然段
-7. 生成结构化文稿
-
-输出要求：
-
-- 默认输出中文
-- 不杜撰原文没有的信息
-- 内容有明显主题切换时，按小节组织
-- 输出中不要保留原始 `.srt` 编号和时间轴
-
-推荐输出结构：
-
-- 标题
-- 内容概览
-- 结构化正文
-- 关键要点
-
-## 依赖前提
-
-使用本 skill 前，请先确认：
-
-- 已安装 Haoone 桌面端
-- 已登录 Haoone 账号
-- 已启用 `haoone-cli`
-- 当前终端里可以直接执行 `haoone-cli --help`
-- 本地模型已安装完成
-
-建议先检查：
-
-```bash
-haoone-cli --help
-haoone-cli installed-models
-```
-
-## 常见排查
-
-### 1. 命令找不到
-
-先执行：
-
-```bash
-which haoone-cli
-```
-
-如果没有输出，通常是：
-
-- PATH 未生效
-- 终端未重开
-- CLI 没有执行权限
-
-### 2. 模型不可用
-
-先执行：
-
-```bash
-haoone-cli installed-models
-```
-
-如果没有模型，先去 Haoone 桌面端安装本地模型。
-
-### 3. 找不到输出文件
-
-优先检查：
-
-1. 显式传入的 `--output` 目录
-2. 当前项目目录下的 `transcriptions`
-3. 输入文件同级目录下的 `transcriptions`
-
-转录完成后，重点看 stdout：
-
-```text
-srt_file_path=...
-json_file_path=...
-```
-
-### 4. 只给文件名但找不到 srt
-
-先执行：
-
-```bash
-haoone-cli get-project-srt-list
-```
-
-如果用户知道项目名，则执行：
-
-```bash
-haoone-cli get-project-srt-list -p project_name
-```
-
-如果匹配到多个候选路径，不应擅自猜测，应让用户确认目标文件。
-
-## 说明
-
-仓库中的核心文件：
-
-- [SKILL.md](./SKILL.md)：skill 主说明
-- [agents/openai.yaml](./agents/openai.yaml)：skill UI 元数据
-- [references/haoone-cli.md](./references/haoone-cli.md)：完整命令参考
+- 尽量在提示词里明确文件路径、目录路径、项目名
+- 如果你已经知道要调用的子命令，可以直接写出，例如：`请执行 haoone-cli transcribe ...`
+- 如果你不确定该用哪个命令，也可以直接描述目标，例如：`帮我把这个视频转成字幕`
