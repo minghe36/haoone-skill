@@ -1,0 +1,7 @@
+interface:
+  display_name: "Haoone CLI"
+  short_description: "直接调用 haoone-cli 处理字幕与项目工作流。"
+  default_prompt: "使用 $haoone-skill 直接调用 haoone-cli 处理转录、热词、项目和文稿相关操作。"
+
+policy:
+  allow_implicit_invocation: true
