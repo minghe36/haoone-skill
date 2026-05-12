@@ -3,7 +3,9 @@
 `haoone-skill` 使用此技能可以调用 haoone-cli 处理字幕工作流，基于 qwen3-asr 包括转录音视频、批量转录、查看已安装模型、文稿匹配、格式化文稿、管理热词、读取配置、查看项目、创建项目、删除项目，翻译、双语字幕等。
 
 haoone 是新一代的 AI 专业字幕软件，此 skill 为软件配套的技能，可以免费使用。
+
 haoone 软件介绍：[https://www.haoai.pro/haoone](https://www.haoai.pro/haoone)
+
 haoone-cli 命令行工具介绍：[https://guide.haoai.pro/guide/haoone/%E4%BD%BF%E7%94%A8haoone-cli%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7](https://guide.haoai.pro/guide/haoone/%E4%BD%BF%E7%94%A8haoone-cli%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7)
 
 
