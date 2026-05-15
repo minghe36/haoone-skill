@@ -2,11 +2,11 @@
 
 `haoone-skill` 使用此技能可以调用 haoone-cli 处理字幕工作流，基于 qwen3-asr 包括转录音视频、批量转录、查看已安装模型、文稿匹配、格式化文稿、管理热词、读取配置、查看项目、创建项目、删除项目，翻译、双语字幕等。
 
-haoone 是新一代的 AI 专业字幕软件，此 skill 为软件配套的技能，可以免费使用。
+haoone 是新一代的 AI 专业字幕软件，覆盖剪辑字幕与字幕翻译工作流的所有核心需求，可以永久免费使用基础功能。
 
-haoone 软件介绍：[https://www.haoai.pro/haoone](https://www.haoai.pro/haoone)
+haoone 软件官网：[https://www.haoai.pro/haoone](https://www.haoai.pro/haoone)
 
-haoone-cli 命令行工具介绍：[https://guide.haoai.pro/guide/haoone/%E4%BD%BF%E7%94%A8haoone-cli%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7](https://guide.haoai.pro/guide/haoone/%E4%BD%BF%E7%94%A8haoone-cli%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7)
+haoone-skill 是 haoone-cli 命令行工具的封装，你可以根据自己的 AI 工作流需要二次定制，haoone-cli 命令行工具介绍：[https://guide.haoai.pro/guide/haoone/%E4%BD%BF%E7%94%A8haoone-cli%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7](https://guide.haoai.pro/guide/haoone/%E4%BD%BF%E7%94%A8haoone-cli%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7)
 
 
 添加 skill ：
@@ -15,10 +15,16 @@ haoone-cli 命令行工具介绍：[https://guide.haoai.pro/guide/haoone/%E4%BD%
 npx skills add minghe36/haoone-skill
 ```
 
+skill 的视频使用教程：[如何使用 haoone-skill 实现 B 站视频内容总结](https://www.bilibili.com/video/BV1z15X6pEyc/)
+
+haoone-skill 的转录准确度与稳定性、词语级对齐吊打 whisper 的套壳转录工具， 默认启用 GPU 加速，自带免费的专业字幕编辑器与快速查错视图，带有热词替换能力。非常适合专业领域视频的内容转录。
+
 ## 使用 skill 的前置条件
 
 1 安装了 [haoone](https://www.haoai.pro/haoone/download) 软件，并完成登录
+
 2 在软件中下载本地模型
+
 3 点击软件的设置按钮，启动命令行工具
 
 先确认命令可用：
@@ -77,7 +83,7 @@ which haoone-cli
 - 把这些热词批量加入haoone的热词配置：`cursor=科舍, claude=克劳德`
 - 帮我添加2个常用大模型热词，格式：热词=最有可能错误的3个同音词
 
-### 文稿整理
+### 文稿匹配
 
 - 把这份转录文稿做格式化整理
 - 用 `format-draft` 处理这段文稿，让标点和分段更自然
