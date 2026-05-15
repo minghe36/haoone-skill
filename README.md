@@ -1,5 +1,13 @@
 # haoone-skill
 
+<div align="center">
+  <img src="https://cdn.haoai.pro/assets/haoone_logo.png" alt="VideoCaptioner Logo" width="100">
+  <h1>haoone-skill</h1>
+  <p>专业字幕转录 skill 工具，中英转录识别准确率96%以上，词语音频对齐率98%</p>
+
+  [官网](https://www.haoai.pro/haoone) / [命令行工具](https://github.com/minghe36/haoone-cli) 
+</div>
+
 `haoone-skill` 使用此技能可以调用 haoone-cli 处理字幕工作流，基于 qwen3-asr 包括转录音视频、批量转录、查看已安装模型、文稿匹配、格式化文稿、管理热词、读取配置、查看项目、创建项目、删除项目，翻译、双语字幕等。
 
 haoone 是新一代的 AI 专业字幕软件，覆盖剪辑字幕与字幕翻译工作流的所有核心需求，可以永久免费使用基础功能。
